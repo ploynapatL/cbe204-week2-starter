@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+.hero {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: white;
+    padding: 20px 30px 60px;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: #f59e0b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.program-info,
+.courses-section,
+.contact-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+.courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 220px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+}
+
+.course-card h3 {
+    margin-top: 0;
+    color: #1e3a8a;
+}
+
+.course-card p {
+    color: #4b5563;
+}
+
+.course-card a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.contact-form button {
+    padding: 10px;
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.site-footer {
+    background: #1f2937;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
