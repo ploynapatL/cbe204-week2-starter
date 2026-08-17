@@ -5,18 +5,23 @@ body {
     background: #f4f6f8;
 }
 
-.courses {
+/* .courses {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-}
-
-/* .courses {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 15px;
 } */
+
+.courses {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px;
+    justify-content: center;
+    align-content: start;
+
+    /* overflow: auto; */
+}
 
 .course-card {
     display: flex;

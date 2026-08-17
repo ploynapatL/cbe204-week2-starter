@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your Rainshine Books rental basket.">
+  <title>Your Basket | Rainshine Books</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><nav class="navbar container" aria-label="Main navigation">
+  <a class="brand" href="index.html"><span class="brand-mark">R</span><span>Rainshine Books</span></a>
+  <button class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-menu"><span></span><span></span><span></span></button>
+  <div id="main-menu" class="nav-links"><a href="index.html">Home</a><a href="books.html">Search / Browse</a><a class="active basket-link" href="basket.html">Basket <span class="badge basket-count">0</span></a><a href="about.html">About</a></div>
+</nav></header>
+
+<main>
+<section class="page-hero compact"><div class="container"><p class="eyebrow">Your little reading pile</p><h1>Your Basket</h1><p>Choose how long you'd like to keep each story.</p></div></section>
+<section class="basket-section container">
+  <div id="basket-empty" class="empty-state hidden"><div class="empty-moon">☾</div><h2>Your basket is quiet tonight.</h2><p>Perhaps there's a story waiting for you on the shelf.</p><a class="btn btn-primary" href="books.html">Browse Books</a></div>
+  <div id="basket-content" class="basket-layout">
+    <div><div id="basket-items" class="basket-items"></div><a class="text-link back-link" href="books.html">← Continue Browsing</a></div>
+    <aside class="summary-card">
+      <p class="eyebrow">Rental summary</p><h2>Ready when you are.</h2>
+      <div class="summary-row"><span>Rental subtotal</span><strong id="subtotal">$0.00</strong></div>
+      <div class="summary-row"><span>Service fee</span><strong id="service-fee">$0.00</strong></div>
+      <div class="summary-row total"><span>Grand total</span><strong id="grand-total">$0.00</strong></div>
+      <button id="proceed-btn" class="btn btn-primary btn-wide">Proceed to Rental <span>→</span></button>
+      <p class="fine-print">No payment is collected on this demo. We'll simply confirm your rental request.</p>
+    </aside>
+  </div>
+</section>
+</main>
+
+<div id="rental-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rental-title">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close rental form" data-close-modal>×</button>
+    <div id="rental-form-view">
+      <p class="eyebrow">Almost ready</p><h2 id="rental-title">Tell us where to send your stories.</h2>
+      <form id="rental-form">
+        <div class="form-grid"><label>Customer name<input name="name" type="text" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label></div>
+        <label>Phone number <span class="optional">(optional)</span><input name="phone" type="tel" autocomplete="tel"></label>
+        <fieldset><legend>Pickup / delivery preference</legend><label class="radio"><input name="preference" type="radio" value="Pickup" checked> Pickup</label><label class="radio"><input name="preference" type="radio" value="Delivery"> Delivery</label></fieldset>
+        <div class="modal-summary"><div><span>Books</span><strong id="modal-books"></strong></div><div><span>Total</span><strong id="modal-total"></strong></div></div>
+        <button class="btn btn-primary btn-wide" type="submit">Confirm Rental</button>
+      </form>
+    </div>
+    <div id="rental-success" class="success-view hidden"><div class="success-icon">✓</div><p class="eyebrow">You're all set</p><h2>Rainy-night reading is on its way.</h2><p>Thanks, <strong id="success-name"></strong>. Your rental request has been recorded for this front-end demo.</p><a class="btn btn-primary" href="books.html">Browse More Stories</a></div>
+  </div>
+</div>
+
+<footer class="footer"><div class="container footer-inner"><a class="brand" href="index.html"><span class="brand-mark">R</span><span>Rainshine Books</span></a><p>Rain outside. A warm light inside. A good book in your hands.</p><div><a href="books.html">Browse</a><a href="about.html">About</a></div></div><div class="container footer-bottom"><span>© 2026 Rainshine Books</span><span>Made for quiet readers.</span></div></footer>
+<script src="script.js"></script>
+</body>
+</html>

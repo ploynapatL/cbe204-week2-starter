@@ -84,10 +84,10 @@ h2 {
 }
 
 .content-wrap {
-  max-width: 800px;
+  max-width: 80%; /*change 800px -> 80%*/
   width: 850px;
   margin: 0 auto;
-  padding: 60px 0;
+  padding: 40px 0;
 }
 
 h3 {
@@ -134,7 +134,7 @@ header {
   object-fit: cover;
   border-radius: 50%;
   border: 6px solid #FFE66D;
-  position: absolute;
+  position: static; /*change absolute -> static*/
   left: 60px;
   top: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);

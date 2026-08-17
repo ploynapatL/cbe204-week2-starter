@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kestrel Ridge University</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper: #ECEAE1;
+    --paper-dim: #DFDBC8;
+    --cream: #F7F5EE;
+    --ink: #1E2B22;
+    --pine: #24402F;
+    --pine-deep: #152219;
+    --brass: #A9884F;
+    --brass-light: #C7AD79;
+    --rust: #9C4A2E;
+    --fog: #CFCBB8;
+
+    --display: 'Fraunces', serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  img, svg{ display:block; max-width:100%; }
+
+  :focus-visible{ outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+
+  h1, h2, h3{
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--pine-deep);
+    letter-spacing: -0.01em;
+  }
+
+  p{ color: #3B4A40; max-width: 60ch; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(236,234,225,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--fog);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 32px;
+    max-width: 1180px; margin: 0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{ width:30px; height:30px; flex-shrink:0; }
+  .brand-text{
+    font-family: var(--display); font-weight:600; font-size: 17px;
+    letter-spacing: 0.01em; color: var(--pine-deep);
+  }
+  .brand-text small{
+    display:block; font-family: var(--mono); font-weight:400;
+    font-size: 10px; letter-spacing: 0.12em; color: var(--rust);
+    text-transform: uppercase; margin-top:1px;
+  }
+  nav.links{ display:flex; align-items:center; gap: 30px; }
+  nav.links a{
+    font-size: 14px; font-weight:500; color: var(--pine);
+    position:relative; padding: 4px 0;
+  }
+  nav.links a:not(.cta)::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background: var(--rust); transition: width .25s ease;
+  }
+  nav.links a:not(.cta):hover::after{ width:100%; }
+  .cta{
+    background: var(--rust); color: var(--cream) !important;
+    padding: 10px 20px; border-radius: 2px; font-weight:600 !important;
+    font-size: 13px !important; letter-spacing:0.02em;
+    transition: background .2s ease;
+  }
+  .cta:hover{ background: #7f3a22; }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    overflow: hidden;
+    padding: 90px 0 40px;
+    border-bottom: 1px solid var(--fog);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr;
+    gap: 40px; align-items:center;
+    max-width: 1180px; margin:0 auto; padding: 0 32px;
+    position:relative; z-index:2;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height: 1.06;
+    margin: 14px 0 22px;
+  }
+  .hero h1 em{ font-style: italic; color: var(--rust); font-weight: 400; }
+  .hero p.lede{
+    font-size: 17px; color: var(--ink); opacity: 0.82; margin-bottom: 30px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--pine-deep); color: var(--cream);
+    padding: 13px 24px; font-weight:600; font-size:14px; border-radius:2px;
+    transition: background .2s ease;
+  }
+  .btn-primary:hover{ background: var(--pine); }
+  .btn-ghost{
+    border: 1px solid var(--ink); color: var(--ink);
+    padding: 13px 24px; font-weight:600; font-size:14px; border-radius:2px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .btn-ghost:hover{ background: rgba(30,43,34,0.06); }
+
+  .topo-figure{ position:relative; }
+  .topo-svg{ width:100%; height:auto; }
+  .ring{ fill:none; stroke: var(--pine); }
+  .marker-dot{ fill: var(--rust); }
+  .marker-line{ stroke: var(--brass); stroke-width:1; stroke-dasharray: 2 3; }
+  .marker-label{
+    font-family: var(--mono); font-size: 11px; fill: var(--pine-deep);
+  }
+  .marker-label .num{ fill: var(--rust); }
+
+  .ridge-divider{ display:block; width:100%; height:44px; }
+  .ridge-divider path{ fill: var(--pine-deep); }
+
+  /* ---------- MISSION STRIP ---------- */
+  .mission{
+    background: var(--pine-deep); color: var(--paper);
+    padding: 64px 0;
+  }
+  .mission .wrap{ max-width: 880px; }
+  .mission p{
+    font-family: var(--display); font-weight:400; font-style: italic;
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    color: var(--paper); opacity:0.96; max-width: none;
+    line-height:1.45;
+  }
+  .mission cite{
+    display:block; margin-top:22px; font-style: normal;
+    font-family: var(--mono); font-size:12px; letter-spacing:0.08em;
+    color: var(--brass-light); text-transform:uppercase;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding: 88px 0; }
+  .section-head{ max-width: 640px; margin-bottom: 52px; }
+  .section-head h2{ font-size: clamp(1.8rem, 3vw, 2.4rem); margin-top:10px; }
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- RIDGE / ELEVATION SECTION ---------- */
+  .elevation-list{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border-top: 1px solid var(--fog);
+  }
+  .elevation-item{
+    padding: 30px 26px; border-bottom: 1px solid var(--fog);
+    border-right: 1px solid var(--fog);
+    position:relative;
+  }
+  .elevation-item:last-child{ border-right:none; }
+  .elev-tag{
+    font-family: var(--mono); font-size:12px; color: var(--rust);
+    display:flex; align-items:baseline; gap:6px; margin-bottom:14px;
+  }
+  .elev-tag .ft{ color: var(--brass); }
+  .elevation-item h3{ font-size: 1.15rem; margin-bottom:8px; }
+  .elevation-item p{ font-size: 14.5px; }
+
+  /* ---------- ACADEMICS GRID ---------- */
+  .schools{
+    display:grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    background: var(--fog);
+    border: 1px solid var(--fog);
+  }
+  .school-card{
+    background: var(--cream); padding: 34px;
+    transition: background .2s ease;
+  }
+  .school-card:hover{ background: #fff; }
+  .school-card .eyebrow{ margin-bottom: 10px; }
+  .school-card h3{ font-size:1.3rem; margin-bottom:10px; }
+  .school-card p{ font-size:14.5px; }
+
+  /* ---------- FIELD STATION FEATURE ---------- */
+  .feature{
+    background: var(--paper-dim);
+    padding: 90px 0;
+    border-top:1px solid var(--fog); border-bottom:1px solid var(--fog);
+  }
+  .feature-grid{
+    display:grid; grid-template-columns: 0.95fr 1.05fr; gap:56px; align-items:center;
+  }
+  .feature-visual{
+    aspect-ratio: 4/3; background: var(--pine-deep); border-radius:2px;
+    position:relative; overflow:hidden;
+  }
+  .feature h2{ font-size: clamp(1.7rem, 2.8vw, 2.2rem); margin: 12px 0 18px; }
+  .feature-stats{ display:flex; gap: 34px; margin-top: 28px; flex-wrap:wrap; }
+  .stat .n{ font-family: var(--display); font-size: 2rem; color: var(--rust); font-weight:600; }
+  .stat .l{ font-family: var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color: var(--ink); opacity:0.7; }
+
+  /* ---------- NUMBERS BAND ---------- */
+  .numbers{
+    display:grid; grid-template-columns: repeat(4,1fr);
+    border-top:1px solid var(--fog); border-bottom:1px solid var(--fog);
+  }
+  .num-item{
+    padding: 40px 24px; text-align:left; border-right:1px solid var(--fog);
+  }
+  .num-item:last-child{ border-right:none; }
+  .num-item .n{ font-family:var(--display); font-size: 2.6rem; font-weight:600; color: var(--pine-deep); }
+  .num-item .l{ font-size:13.5px; color: var(--ink); opacity:0.75; margin-top:6px; }
+
+  /* ---------- ADMISSIONS CTA ---------- */
+  .admit{ background: var(--pine-deep); color: var(--paper); padding: 96px 0; }
+  .admit-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items:start; }
+  .admit h2{ color: var(--paper); font-size: clamp(1.9rem,3.2vw,2.6rem); margin:12px 0 18px; }
+  .admit p{ color: var(--paper); opacity:0.82; }
+  .deadlines{ border-top: 1px solid rgba(247,245,238,0.25); }
+  .deadline-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding: 16px 0; border-bottom: 1px solid rgba(247,245,238,0.25);
+    font-family: var(--mono); font-size: 13.5px;
+  }
+  .deadline-row .d{ color: var(--brass-light); }
+  .admit .btn-primary{ background: var(--rust); margin-top: 26px; }
+  .admit .btn-primary:hover{ background:#b25638; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 56px 0 40px; }
+  .foot-grid{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 36px;
+    border-top: 1px solid var(--fog); padding-top: 44px;
+  }
+  .foot-brand .brand-text{ font-size:18px; }
+  footer p{ font-size: 13.5px; opacity:0.75; margin-top:10px; }
+  .foot-col h4{
+    font-family: var(--mono); font-size:11px; text-transform:uppercase;
+    letter-spacing:0.08em; color: var(--rust); margin-bottom:14px;
+  }
+  .foot-col a{ display:block; font-size:14px; color: var(--ink); opacity:0.85; margin-bottom:10px; }
+  .foot-col a:hover{ opacity:1; text-decoration:underline; }
+  .foot-bottom{
+    display:flex; justify-content:space-between; margin-top:44px;
+    font-family: var(--mono); font-size:11.5px; opacity:0.6; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .topo-figure{ order:-1; }
+    .feature-grid{ grid-template-columns: 1fr; }
+    .schools{ grid-template-columns: 1fr; }
+    .elevation-list{ grid-template-columns: 1fr; }
+    .elevation-item{ border-right:none; }
+    .numbers{ grid-template-columns: 1fr 1fr; }
+    .num-item:nth-child(2){ border-right:none; }
+    .admit-grid{ grid-template-columns: 1fr; }
+    .foot-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    nav.links{ display:none; }
+    .nav{ padding: 16px 20px; }
+    .wrap{ padding: 0 20px; }
+    .hero-grid{ padding: 0 20px; }
+    .numbers{ grid-template-columns: 1fr 1fr; }
+    .foot-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 22 L8 10 L13 17 L18 6 L29 22 Z" fill="none" stroke="#24402F" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="18" cy="6" r="1.6" fill="#9C4A2E"/>
+      </svg>
+      <div class="brand-text">Kestrel Ridge<small>University · Est. 1891</small></div>
+    </div>
+    <nav class="links">
+      <a href="#ridge">Campus</a>
+      <a href="#academics">Academics</a>
+      <a href="#station">Research</a>
+      <a href="#admit" class="cta">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Alder Hollow, Oregon — Cascade foothills</p>
+      <h1>A campus you can <em>read</em><br>like a trail map.</h1>
+      <p class="lede">Kestrel Ridge is built up a forested slope, not around a quad — so your first year of chemistry sits eight hundred feet from the watershed you'll spend your last year studying. 2,400 students, four schools, one ridge.</p>
+      <div class="hero-ctas">
+        <a href="#admit" class="btn-primary">Plan a visit</a>
+        <a href="#academics" class="btn-ghost">See the programs</a>
+      </div>
+    </div>
+    <div class="topo-figure">
+      <svg class="topo-svg" viewBox="0 0 560 520" xmlns="http://www.w3.org/2000/svg" id="topoSvg" role="img" aria-label="Topographic illustration of the Kestrel Ridge campus, marked with building elevations">
+        <!-- rings + markers injected by script -->
+      </svg>
+    </div>
+  </div>
+</section>
+
+<svg class="ridge-divider" viewBox="0 0 1200 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M0,44 L0,30 L90,16 L180,26 L280,6 L370,22 L460,10 L560,28 L660,4 L760,20 L860,8 L960,26 L1060,12 L1150,22 L1200,10 L1200,44 Z"/>
+</svg>
+
+<div class="mission">
+  <div class="wrap">
+    <p>"We didn't landscape a forest into a campus. We put a campus into a forest, and asked every department to explain what it was doing there."</p>
+    <cite>— Founding charter, Kestrel Ridge University, 1891</cite>
+  </div>
+</div>
+
+<section id="ridge">
+  <div class="wrap section-head reveal">
+    <p class="eyebrow">The ridge, mapped</p>
+    <h2>Your major decides your elevation.</h2>
+    <p>Kestrel Ridge climbs 820 vertical feet from the valley floor to the field station. Rather than scatter departments across a flat quad, we built the campus so that where you study reflects what you study — foundational classrooms low on the slope, specialized labs and studios higher up, and fieldwork at the summit.</p>
+  </div>
+  <div class="elevation-list wrap reveal">
+    <div class="elevation-item">
+      <div class="elev-tag">LOWER CAMPUS <span class="ft">· 420–560 FT</span></div>
+      <h3>Foundations & Letters</h3>
+      <p>First-year seminars, the library, and the School of Letters & Culture sit closest to the valley — and to Alder Hollow itself, ten minutes downhill on foot.</p>
+    </div>
+    <div class="elevation-item">
+      <div class="elev-tag">MID CAMPUS <span class="ft">· 700–880 FT</span></div>
+      <h3>Labs & Studios</h3>
+      <p>Engineering, materials, and design work happens in the terraced lab buildings, wired for equipment too heavy to carry uphill twice.</p>
+    </div>
+    <div class="elevation-item">
+      <div class="elev-tag">UPPER CAMPUS <span class="ft">· 1,050–1,240 FT</span></div>
+      <h3>Field & Observation</h3>
+      <p>The Alder Creek Field Station and the ridge observatory sit at the tree line, where the coursework is the landscape itself.</p>
+    </div>
+  </div>
+</section>
+
+<section id="academics" style="background:var(--paper-dim); border-top:1px solid var(--fog); border-bottom:1px solid var(--fog);">
+  <div class="wrap section-head reveal">
+    <p class="eyebrow">Four schools</p>
+    <h2>Academics, by the slope.</h2>
+    <p>Every school keeps its classes small enough that faculty learn your name in week one — a 9:1 student-to-faculty ratio, university-wide.</p>
+  </div>
+  <div class="schools wrap reveal">
+    <div class="school-card">
+      <p class="eyebrow">500 FT · Lower Campus</p>
+      <h3>School of Environmental Science</h3>
+      <p>Watershed ecology, soil science, and climate modeling, taught from a stream that runs directly through the department's back door.</p>
+    </div>
+    <div class="school-card">
+      <p class="eyebrow">560 FT · Lower Campus</p>
+      <h3>School of Letters & Culture</h3>
+      <p>Writing, history, and languages, anchored by a small-press program that binds and prints its own student journal each spring.</p>
+    </div>
+    <div class="school-card">
+      <p class="eyebrow">820 FT · Mid Campus</p>
+      <h3>School of Engineering & Design</h3>
+      <p>Mechanical and environmental engineering alongside product design, sharing a single fabrication floor so majors keep colliding.</p>
+    </div>
+    <div class="school-card">
+      <p class="eyebrow">1,140 FT · Upper Campus</p>
+      <h3>School of Field Biology</h3>
+      <p>Wildlife biology and conservation, based out of the field station, with coursework that runs on the seasons more than the semester.</p>
+    </div>
+  </div>
+</section>
+
+<section id="station" class="feature">
+  <div class="wrap feature-grid">
+    <div class="feature-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 300" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="300" fill="#152219"/>
+        <path d="M0,220 L60,180 L120,200 L180,140 L240,175 L300,110 L360,150 L400,120 L400,300 L0,300 Z" fill="#1F3A2E"/>
+        <path d="M0,250 L70,220 L140,240 L210,190 L280,215 L350,170 L400,190 L400,300 L0,300 Z" fill="#24402F"/>
+        <circle cx="300" cy="70" r="26" fill="none" stroke="#C7AD79" stroke-width="1.2" opacity="0.8"/>
+        <circle cx="300" cy="70" r="3" fill="#A9884F"/>
+        <line x1="300" y1="70" x2="340" y2="45" stroke="#A9884F" stroke-width="1" stroke-dasharray="2 3"/>
+        <text x="345" y="43" font-family="IBM Plex Mono" font-size="10" fill="#F7F5EE" opacity="0.85">1,140 FT</text>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">Alder Creek Field Station</p>
+      <h2>The lab with no walls on one side.</h2>
+      <p>Every school sends students through the field station, not just biology. Engineers instrument the creek for flow data. Writers keep a season log. Environmental science majors practically live there. It's the one building on campus every graduate has a key story about.</p>
+      <div class="feature-stats">
+        <div class="stat"><div class="n">38</div><div class="l">Years of continuous stream data</div></div>
+        <div class="stat"><div class="n">1,800</div><div class="l">Acres of research forest</div></div>
+        <div class="stat"><div class="n">6</div><div class="l">Departments with station coursework</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="numbers wrap">
+  <div class="num-item"><div class="n">2,400</div><div class="l">Undergraduates</div></div>
+  <div class="num-item"><div class="n">9:1</div><div class="l">Student-to-faculty ratio</div></div>
+  <div class="num-item"><div class="n">820 ft</div><div class="l">Vertical rise across campus</div></div>
+  <div class="num-item"><div class="n">1891</div><div class="l">Founded above Alder Hollow</div></div>
+</div>
+
+<section style="padding: 80px 0 40px;">
+  <div class="wrap reveal" style="max-width:720px;">
+    <p class="eyebrow">A voice from the ridge</p>
+    <h2 style="font-size:1.5rem; font-weight:400; font-style:italic; margin:14px 0 16px; line-height:1.5;">"I can walk out of a fluid dynamics lecture and be standing in the actual creek we modeled in twelve minutes. That commute doesn't exist anywhere else I looked at."</h2>
+    <p style="font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--rust);">Mara Whitfield · Environmental Engineering, Class of 2026</p>
+  </div>
+</section>
+
+<section id="admit" class="admit">
+  <div class="wrap admit-grid">
+    <div>
+      <p class="eyebrow" style="color:var(--brass-light);">Admissions</p>
+      <h2>Apply from wherever you're standing.</h2>
+      <p>We read every application by hand — no minimum test score cutoffs, no interviews required. Tell us what you'd want to study on a slope like this one, and why.</p>
+      <a href="#" class="btn-primary">Start an application</a>
+    </div>
+    <div class="deadlines">
+      <div class="deadline-row"><span>Early Action</span><span class="d">Nov 1</span></div>
+      <div class="deadline-row"><span>Regular Decision</span><span class="d">Jan 15</span></div>
+      <div class="deadline-row"><span>Transfer Applicants</span><span class="d">Mar 1</span></div>
+      <div class="deadline-row"><span>Financial Aid (FAFSA)</span><span class="d">Feb 15</span></div>
+      <div class="deadline-row" style="border-bottom:none;"><span>Application Fee</span><span class="d">Waived</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <svg class="brand-mark" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 22 L8 10 L13 17 L18 6 L29 22 Z" fill="none" stroke="#24402F" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="18" cy="6" r="1.6" fill="#9C4A2E"/>
+          </svg>
+          <div class="brand-text">Kestrel Ridge</div>
+        </div>
+        <p>412 Ridge Road<br>Alder Hollow, OR 97401</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="#academics">Academics</a>
+        <a href="#station">Research</a>
+        <a href="#ridge">Campus map</a>
+        <a href="#admit">Admissions</a>
+      </div>
+      <div class="foot-col">
+        <h4>Community</h4>
+        <a href="#">Alumni</a>
+        <a href="#">Athletics</a>
+        <a href="#">Events</a>
+        <a href="#">Library</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="#">admissions@kestrelridge.edu</a>
+        <a href="#">(541) 555‑0148</a>
+        <a href="#">Visit campus</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Kestrel Ridge University</span>
+      <span>Accredited · Nonprofit · Est. 1891</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Topographic hero illustration (deterministic, no external deps) ----
+  (function(){
+    var svg = document.getElementById('topoSvg');
+    var NS = 'http://www.w3.org/2000/svg';
+    var cx = 330, cy = 300;
+
+    function ringRadius(theta, seed){
+      return 0
+        + 18*Math.sin(3*theta + seed*0.7)
+        + 10*Math.sin(5*theta + seed*1.3)
+        + 6*Math.sin(8*theta + seed*2.1);
+    }
+
+    function ringPoints(baseR, seed, steps){
+      var pts = [];
+      for (var i=0;i<steps;i++){
+        var theta = (i/steps) * Math.PI * 2;
+        var r = baseR + ringRadius(theta, seed);
+        var x = cx + r * Math.cos(theta);
+        var y = cy + r * 0.62 * Math.sin(theta);
+        pts.push([x,y]);
+      }
+      return pts;
+    }
+
+    function smoothClosedPath(pts){
+      var n = pts.length;
+      var d = 'M ' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1) + ' ';
+      for (var i=0;i<n;i++){
+        var p0 = pts[(i-1+n)%n], p1 = pts[i], p2 = pts[(i+1)%n], p3 = pts[(i+2)%n];
+        var c1x = p1[0] + (p2[0]-p0[0])/6, c1y = p1[1] + (p2[1]-p0[1])/6;
+        var c2x = p2[0] - (p3[0]-p1[0])/6, c2y = p2[1] - (p3[1]-p1[1])/6;
+        d += 'C ' + c1x.toFixed(1) + ',' + c1y.toFixed(1) + ' ' + c2x.toFixed(1) + ',' + c2y.toFixed(1) + ' ' + p2[0].toFixed(1) + ',' + p2[1].toFixed(1) + ' ';
+      }
+      return d + 'Z';
+    }
+
+    var radii = [40, 90, 140, 190, 240];
+    radii.forEach(function(baseR, i){
+      var seed = i * 1.7 + 0.4;
+      var pts = ringPoints(baseR, seed, 64);
+      var path = document.createElementNS(NS, 'path');
+      path.setAttribute('class', 'ring');
+      path.setAttribute('d', smoothClosedPath(pts));
+      path.setAttribute('stroke-width', i === radii.length - 1 ? 1.4 : 1);
+      path.setAttribute('opacity', (0.9 - i*0.13).toFixed(2));
+      svg.appendChild(path);
+    });
+
+    // Elevation markers, computed from the same radius function so they sit on real rings
+    var markers = [
+      { ringIndex: 1, theta: 3.9, label: 'LIBRARY', ft: '560 FT', dx: -86, dy: -6 },
+      { ringIndex: 2, theta: 5.4, label: 'ENGINEERING HALL', ft: '820 FT', dx: 40, dy: 4 },
+      { ringIndex: 4, theta: 1.15, label: 'FIELD STATION', ft: '1,140 FT', dx: 30, dy: -30 }
+    ];
+
+    markers.forEach(function(m){
+      var baseR = radii[m.ringIndex];
+      var seed = m.ringIndex * 1.7 + 0.4;
+      var r = baseR + ringRadius(m.theta, seed);
+      var x = cx + r * Math.cos(m.theta);
+      var y = cy + r * 0.62 * Math.sin(m.theta);
+      var lx = x + m.dx, ly = y + m.dy;
+
+      var dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 3.2);
+      dot.setAttribute('class', 'marker-dot');
+      svg.appendChild(dot);
+
+      var line = document.createElementNS(NS, 'line');
+      line.setAttribute('x1', x); line.setAttribute('y1', y);
+      line.setAttribute('x2', lx); line.setAttribute('y2', ly);
+      line.setAttribute('class', 'marker-line');
+      svg.appendChild(line);
+
+      var text = document.createElementNS(NS, 'text');
+      text.setAttribute('class', 'marker-label');
+      text.setAttribute('x', lx + (m.dx < 0 ? -4 : 4));
+      text.setAttribute('y', ly);
+      text.setAttribute('text-anchor', m.dx < 0 ? 'end' : 'start');
+      text.innerHTML = m.label + '  <tspan class="num">' + m.ft + '</tspan>';
+      svg.appendChild(text);
+    });
+  })();
+
+  // ---- Scroll reveal ----
+  (function(){
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (prefersReduced || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

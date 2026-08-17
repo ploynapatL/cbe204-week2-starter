@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eztelle University — Cybersecurity Courses</title>
+<meta name="description" content="Eztelle University: cybersecurity courses that take you from the surface to the deep, and out to the stars.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ambient starfield canvas, sits behind everything -->
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<a class="skip-link" href="#courses">Skip to courses</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="brand" aria-label="Eztelle University, home">
+      <span class="logo-badge" aria-hidden="true">
+        <span class="logo-letters">EZ</span>
+        <svg class="logo-star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0 L11.8 7.6 L20 10 L11.8 12.4 L10 20 L8.2 12.4 L0 10 L8.2 7.6 Z"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        Eztelle
+        <small>University</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#top">Home</a>
+      <a href="#courses">Courses</a>
+      <a href="#why">Why Eztelle</a>
+      <a href="#footer">Contact</a>
+      <a href="#courses" class="nav-cta">Enroll Now</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Eztelle University · School of Cybersecurity</p>
+      <h1 class="hero-title">
+        Dive the depths.<br>
+        Defend the <span class="accent-text">stars</span>.
+      </h1>
+      <p class="hero-lede">
+        Cybersecurity training built like a dive log: you descend one skill level at a time, from
+        sunlit shallows to the pressure of the deep, until the whole sky of a modern network makes sense.
+      </p>
+      <div class="hero-ctas">
+        <a href="#courses" class="btn btn-primary">Explore courses</a>
+        <a href="#why" class="btn btn-ghost">Why Eztelle</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="n">12,400+</span>
+          <span class="l">Learners certified</span>
+        </div>
+        <div class="hero-stat">
+          <span class="n">3</span>
+          <span class="l">Depth levels</span>
+        </div>
+        <div class="hero-stat">
+          <span class="n">94%</span>
+          <span class="l">Job-ready pass rate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-horizon" aria-hidden="true"></div>
+  </section>
+
+  <!-- WHY / FEATURES STRIP -->
+  <section class="why" id="why">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div class="why-card">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <h3>Learn in real currents</h3>
+          <p>Every course runs on live-fire labs and simulated breach traffic, not slideshows about theory.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <h3>Instructors from the field</h3>
+          <p>Taught by working analysts and pen testers who patch real systems between semesters.</p>
+        </div>
+        <div class="why-card">
+          <svg class="why-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.5"/><path d="M12 3.5v17M3.5 12h17" stroke="currentColor" stroke-width="1.2" opacity="0.5"/></svg>
+          <h3>A clear depth chart</h3>
+          <p>Three levels, one path: start at the surface and know exactly how far you've descended.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses" id="courses">
+    <div class="section-inner">
+      <div class="section-head">
+        <p class="eyebrow">The depth chart</p>
+        <h2>Three levels. One descent.</h2>
+        <p class="section-sub">Each course is a checkpoint deeper into the water — start wherever your current skill sits.</p>
+      </div>
+
+      <div class="course-grid">
+
+        <!-- Course 1 -->
+        <article class="course-card" data-depth="1">
+          <div class="course-depth">
+            <span class="depth-tag">0–200M · SHALLOW WATERS</span>
+            <span class="depth-level">Level 01</span>
+          </div>
+          <h3 class="course-name">Cybersecurity Fundamentals</h3>
+          <p class="course-desc">
+            Your entry point into the field. Learn how networks actually get attacked, and build the
+            habits that stop the most common breaches before they start.
+          </p>
+          <div class="course-lesson">
+            <span class="lesson-label">Key lesson</span>
+            <span class="lesson-text">Network Defense &amp; Threat Basics</span>
+          </div>
+          <div class="course-footer">
+            <span class="course-price"><span class="currency">$</span>199</span>
+            <a href="#" class="btn btn-card">Enroll Now</a>
+          </div>
+        </article>
+
+        <!-- Course 2 -->
+        <article class="course-card" data-depth="2">
+          <div class="course-depth">
+            <span class="depth-tag">200–1000M · OPEN WATER</span>
+            <span class="depth-level">Level 02</span>
+          </div>
+          <h3 class="course-name">Ethical Hacking &amp; Penetration Testing</h3>
+          <p class="course-desc">
+            Switch sides. Learn to think like an attacker, run sanctioned intrusions, and report
+            findings the way real security teams expect them.
+          </p>
+          <div class="course-lesson">
+            <span class="lesson-label">Key lesson</span>
+            <span class="lesson-text">Live Exploit Simulation Labs</span>
+          </div>
+          <div class="course-footer">
+            <span class="course-price"><span class="currency">$</span>349</span>
+            <a href="#" class="btn btn-card">Enroll Now</a>
+          </div>
+        </article>
+
+        <!-- Course 3 -->
+        <article class="course-card course-card--deep" data-depth="3">
+          <div class="course-depth">
+            <span class="depth-tag">1000M+ · ABYSSAL ZONE</span>
+            <span class="depth-level">Level 03</span>
+          </div>
+          <h3 class="course-name">Cloud Security &amp; Cryptography</h3>
+          <p class="course-desc">
+            The deep end. Design zero-trust architectures, harden multi-cloud environments, and
+            build the cryptographic systems that hold under real pressure.
+          </p>
+          <div class="course-lesson">
+            <span class="lesson-label">Key lesson</span>
+            <span class="lesson-text">Zero-Trust Architecture Design</span>
+          </div>
+          <div class="course-footer">
+            <span class="course-price"><span class="currency">$</span>429</span>
+            <a href="#" class="btn btn-card">Enroll Now</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / CTA BAND -->
+  <section class="signal-band">
+    <div class="section-inner signal-inner">
+      <div>
+        <p class="eyebrow">Stay in orbit</p>
+        <h2>Get new cohort dates before they fill up.</h2>
+      </div>
+      <form class="signal-form" id="signalForm" novalidate>
+        <label for="signalEmail" class="sr-only">Email address</label>
+        <input type="email" id="signalEmail" name="email" placeholder="you@example.com" required>
+        <button type="submit" class="btn btn-primary">Send me updates</button>
+      </form>
+      <p class="signal-msg" id="signalMsg" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="footer">
+  <div class="section-inner footer-grid">
+
+    <div class="footer-brand">
+      <a href="#top" class="brand" aria-label="Eztelle University, home">
+        <span class="logo-badge" aria-hidden="true">
+          <span class="logo-letters">EZ</span>
+          <svg class="logo-star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 0 L11.8 7.6 L20 10 L11.8 12.4 L10 20 L8.2 12.4 L0 10 L8.2 7.6 Z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          Eztelle
+          <small>University</small>
+        </span>
+      </a>
+      <p class="footer-tagline">Charted between the tide and the stars since 2011.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#courses">All courses</a>
+      <a href="#why">Why Eztelle</a>
+      <a href="#top">Admissions</a>
+      <a href="#">Student portal</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help center</a>
+      <a href="#">Financial aid</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Privacy policy</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:admissions@eztelle.edu">admissions@eztelle.edu</a>
+      <a href="tel:+15551234010">+1 (555) 123-4010</a>
+      <p class="footer-address">18 Horizon Bay Drive<br>Port Callisto, CA 94016</p>
+    </div>
+
+  </div>
+
+  <div class="section-inner footer-bottom">
+    <span>© <span id="year"></span> Eztelle University. All rights reserved.</span>
+    <div class="footer-social">
+      <a href="#" aria-label="Eztelle on X">X</a>
+      <a href="#" aria-label="Eztelle on LinkedIn">LinkedIn</a>
+      <a href="#" aria-label="Eztelle on YouTube">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
